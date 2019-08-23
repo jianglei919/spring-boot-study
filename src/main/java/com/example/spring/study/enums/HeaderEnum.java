@@ -1,4 +1,4 @@
-package com.houbank.paydayloan.api.enums;
+package com.example.spring.study.enums;
 
 /**
  * Created by jianglei on 2017/5/4.

@@ -1,4 +1,4 @@
-package com.example.springboot.bean;
+package com.example.spring.study.bean;
 
 import java.math.BigDecimal;
 

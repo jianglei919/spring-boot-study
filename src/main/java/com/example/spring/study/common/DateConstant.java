@@ -1,4 +1,4 @@
-package com.example.spring.study.config;
+package com.example.spring.study.common;
 
 public interface DateConstant {
 

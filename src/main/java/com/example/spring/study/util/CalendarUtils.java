@@ -1,14 +1,10 @@
-package com.houbank.paydayloan.core.utils;
+package com.example.spring.study.util;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import org.apache.commons.lang3.time.FastDateFormat;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import com.alibaba.fastjson.JSON;
-import com.antgroup.zmxy.openplatform.api.internal.util.RSACoderUtil;
-import org.apache.commons.lang3.time.FastDateFormat;
 
 /**
  * 日历
@@ -256,19 +252,5 @@ public class CalendarUtils {
             }
         }
         return age;
-    }
-
-    public static void main(String[] args) throws Exception {
-        DateTimeScope  dateTimeScope = getDayTime();
-
-        System.out.println(JSON.toJSONString(dateTimeScope));
-
-        String d1 =  FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss").format(dateTimeScope.getStartTime());
-
-        System.out.println(d1);
-
-        String d2 =  FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss").format(dateTimeScope.getEndTime());
-
-        System.out.println(d2);
     }
 }

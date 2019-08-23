@@ -1,11 +1,12 @@
 package com.example.spring.study.web.vo.request;
 
 import lombok.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by jianglei on 2019/8/23.
@@ -13,11 +14,11 @@ import java.util.List;
 //@Data
 @Getter
 @Setter
-//@ToString
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class BaseRequestParam implements Serializable {
+//@Builder
+public class BaseParam implements Serializable {
 
     public static final int DEFAULT_PAGE_SIZE = 20;
 
@@ -59,12 +60,24 @@ public class BaseRequestParam implements Serializable {
      */
     private String depDate;
 
-    /**
-     * 出票日期
-     */
-    private String ticketDate;
+    @NotNull(message = "订单信息不能为空")
+    @Valid
+    private OrderInfoParam orderInfoParam;
+
+    @Valid
+    @NotNull(message = "乘机人不能为空")
+    private PassengerInfoParam passengerInfoParam;
+
+    @Valid
+    @NotNull(message = "产品信息不能为空")
+    private ProductInfoParam productInfoParam;
 
     private Integer pageOffSet = 0;
 
     private Integer pageSize = DEFAULT_PAGE_SIZE;
+
+//    @Override
+//    public String toString() {
+//        return ToStringBuilder.reflectionToString(this);
+//    }
 }

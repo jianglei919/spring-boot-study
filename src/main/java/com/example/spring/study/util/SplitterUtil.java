@@ -1,14 +1,10 @@
-package com.example.springboot.demo.utils;
+package com.example.spring.study.util;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Maps;
 
 import java.util.Map;
 
-/**
- * Author: chunfeng.liang
- * Date: 2017/3/9
- */
 public class SplitterUtil {
     public static final Splitter.MapSplitter Map_Splitter = Splitter.on(';').omitEmptyStrings().trimResults().withKeyValueSeparator(":");
     public static final Splitter.MapSplitter OrMapSplitter = Splitter.on('|').omitEmptyStrings().trimResults().withKeyValueSeparator(":");

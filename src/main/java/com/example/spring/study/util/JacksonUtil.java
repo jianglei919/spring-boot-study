@@ -1,4 +1,4 @@
-package com.houbank.paydayloan.core.utils;
+package com.example.spring.study.util;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
@@ -59,7 +59,7 @@ public class JacksonUtil {
         }
     }
 
-    public static <T> Set<T> transformFromString2Set(String json, Class<T> targetClass) {
+    public static <T> Set<T> transformString2Set(String json, Class<T> targetClass) {
         try {
             JavaType javaType = getCollectionType(HashSet.class, targetClass);
             return (Set<T>) OBJECT_MAPPER.readValue(json, javaType);
@@ -70,7 +70,7 @@ public class JacksonUtil {
         }
     }
 
-    public static <T> List<T> transformFromString2List(String json, Class<T> targetClass) {
+    public static <T> List<T> transformString2List(String json, Class<T> targetClass) {
         try {
             JavaType javaType = getCollectionType(ArrayList.class, targetClass);
             return (List<T>) OBJECT_MAPPER.readValue(json, javaType);

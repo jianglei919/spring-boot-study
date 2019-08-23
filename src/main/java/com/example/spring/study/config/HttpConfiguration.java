@@ -1,4 +1,4 @@
-package com.example.springboot.demo.config;
+package com.example.spring.study.config;
 
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;

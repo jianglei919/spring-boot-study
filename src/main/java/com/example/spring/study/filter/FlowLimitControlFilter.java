@@ -1,4 +1,4 @@
-package com.example.springboot.demo.filter;
+package com.example.spring.study.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

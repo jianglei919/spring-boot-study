@@ -1,4 +1,4 @@
-package com.example.springboot.demo.interceptors;
+package com.example.spring.study.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.qunar.flight.alert.server.utils;
+package com.example.spring.study.util;
 
 import com.google.common.base.Charsets;
 import com.google.common.hash.HashCode;

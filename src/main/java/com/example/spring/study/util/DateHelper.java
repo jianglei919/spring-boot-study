@@ -6,7 +6,7 @@ import org.joda.time.format.DateTimeFormat;
 
 import java.util.Date;
 
-public class DateUtil {
+public class DateHelper {
 
     public static final String PATTERN_FULL_DATE_TIME = "yyyy-MM-dd HH:mm:ss";
 

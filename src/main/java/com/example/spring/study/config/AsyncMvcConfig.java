@@ -1,7 +1,7 @@
-package com.example.springboot.demo.config;
+package com.example.spring.study.config;
 
-import com.example.springboot.demo.interceptors.CompleteAsyncHandlerInterceptor;
-import com.example.springboot.demo.interceptors.TimeoutAsyncHandlerInterceptor;
+import com.example.spring.study.interceptor.CompleteAsyncHandlerInterceptor;
+import com.example.spring.study.interceptor.TimeoutAsyncHandlerInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.async.DeferredResultProcessingInterceptor;

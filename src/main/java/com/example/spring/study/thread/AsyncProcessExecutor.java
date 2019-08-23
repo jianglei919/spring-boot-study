@@ -1,4 +1,4 @@
-package com.example.springboot.demo.thread;
+package com.example.spring.study.thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package com.example.springboot.bean;
+package com.example.spring.study.bean;
 
 /**
  * Created by jianglei on 2019/8/13.

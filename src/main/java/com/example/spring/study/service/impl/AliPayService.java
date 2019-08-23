@@ -1,6 +1,6 @@
-package com.example.springboot.demo.service.impl;
+package com.example.spring.study.service.impl;
 
-import com.example.springboot.demo.service.BasePayService;
+import com.example.spring.study.service.BasePayService;
 import org.springframework.stereotype.Service;
 
 /**

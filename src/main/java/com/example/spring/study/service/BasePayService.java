@@ -1,4 +1,4 @@
-package com.example.springboot.demo.service;
+package com.example.spring.study.service;
 
 public interface BasePayService {
 

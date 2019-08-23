@@ -1,12 +1,10 @@
-package com.houbank.paydayloan.core.utils;
+package com.example.spring.study.util;
 
 import java.util.Date;
 
 /**
  * 时间范围
  * 
- * @author think
- *
  */
 public class DateTimeScope {
 

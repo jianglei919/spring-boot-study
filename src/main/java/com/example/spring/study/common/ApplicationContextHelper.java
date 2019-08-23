@@ -1,4 +1,4 @@
-package com.example.springboot.demo.utils;
+package com.example.spring.study.common;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

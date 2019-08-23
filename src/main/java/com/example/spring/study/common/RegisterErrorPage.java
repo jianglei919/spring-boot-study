@@ -1,4 +1,4 @@
-package com.example.springboot.demo.errorpage;
+package com.example.spring.study.common;
 
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.ErrorPageRegistrar;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by jianglei on 2019/5/17.
  */
-@Component
+//@Component
 public class RegisterErrorPage implements ErrorPageRegistrar {
     @Override
     public void registerErrorPages(ErrorPageRegistry registry) {

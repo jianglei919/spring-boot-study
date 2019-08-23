@@ -1,4 +1,4 @@
-package com.example.springboot.demo.thread;
+package com.example.spring.study.thread.async;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

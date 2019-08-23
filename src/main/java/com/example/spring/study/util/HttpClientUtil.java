@@ -1,4 +1,4 @@
-package com.houbank.paydayloan.core.utils;
+package com.example.spring.study.util;
 
 import org.apache.http.*;
 import org.apache.http.client.HttpRequestRetryHandler;
@@ -252,9 +252,9 @@ public class HttpClientUtil {
         }
     }
 
-    public static void main(String[] args) {
-        String url = "http://blog.csdn.net/catoop/article/details/38849497";
-        String result = HttpClientUtil.get(url);
-        System.out.println(result);
-    }
+//    public static void main(String[] args) {
+//        String url = "http://blog.csdn.net/catoop/article/details/38849497";
+//        String result = HttpClientUtil.get(url);
+//        System.out.println(result);
+//    }
 }

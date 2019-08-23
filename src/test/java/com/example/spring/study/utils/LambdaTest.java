@@ -1,7 +1,7 @@
-package com.example.springboot.demo;
+package com.example.spring.study.utils;
 
-import com.example.springboot.bean.OrderModel;
-import com.example.springboot.bean.Passenger;
+import com.example.spring.study.bean.OrderModel;
+import com.example.spring.study.bean.Passenger;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 

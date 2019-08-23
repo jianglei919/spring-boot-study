@@ -1,4 +1,4 @@
-package com.example.springboot.demo.config;
+package com.example.spring.study.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
