@@ -33,5 +33,7 @@ public class CommonTest {
         param.setProductInfoParam(productInfoParam);
         System.out.println(JacksonUtil.parseJson(param));
         System.out.println(param);
+
+        System.out.println(JacksonUtil.parseJson(productInfoParam));
     }
 }

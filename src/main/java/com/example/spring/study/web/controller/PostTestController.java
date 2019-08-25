@@ -2,6 +2,7 @@ package com.example.spring.study.web.controller;
 
 import com.example.spring.study.util.JacksonUtil;
 import com.example.spring.study.web.vo.request.BaseParam;
+import com.example.spring.study.web.vo.request.ProductInfoParam;
 import com.example.spring.study.web.vo.response.ApiResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,5 +26,12 @@ public class PostTestController {
 
         log.info(JacksonUtil.parseJson(baseParam));
         return ApiResult.success(baseParam);
+    }
+
+    @ResponseBody
+    @RequestMapping("/test2")
+    public ApiResult post2(@RequestBody @Valid ProductInfoParam productInfoParam) {
+        log.info(JacksonUtil.parseJson(productInfoParam));
+        return ApiResult.success("你好");
     }
 }
