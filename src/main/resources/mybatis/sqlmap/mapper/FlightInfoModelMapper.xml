@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.spring.study.mapper.FlightInfoModelMapper" >
+  <resultMap id="BaseResultMap" type="com.example.spring.study.model.FlightInfoModel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="airline_company_code" property="airlineCompanyCode" jdbcType="VARCHAR" />
+    <result column="departure_city_code" property="departureCityCode" jdbcType="VARCHAR" />
+    <result column="arrival_city_code" property="arrivalCityCode" jdbcType="VARCHAR" />
+    <result column="departure_airport_code" property="departureAirportCode" jdbcType="VARCHAR" />
+    <result column="arrival_airport_code" property="arrivalAirportCode" jdbcType="VARCHAR" />
+    <result column="stop_airport_code" property="stopAirportCode" jdbcType="VARCHAR" />
+    <result column="flight_no" property="flightNo" jdbcType="VARCHAR" />
+    <result column="luggage_num" property="luggageNum" jdbcType="TINYINT" />
+    <result column="luggage_weight" property="luggageWeight" jdbcType="DECIMAL" />
+    <result column="departure_date" property="departureDate" jdbcType="DATE" />
+    <result column="departure_time" property="departureTime" jdbcType="TIME" />
+    <result column="arrival_time" property="arrivalTime" jdbcType="TIME" />
+    <result column="construction_fee" property="constructionFee" jdbcType="SMALLINT" />
+    <result column="fuel_fee" property="fuelFee" jdbcType="SMALLINT" />
+    <result column="plane_type" property="planeType" jdbcType="VARCHAR" />
+    <result column="stay_days" property="stayDays" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="voyage_no" property="voyageNo" jdbcType="TINYINT" />
+    <result column="takeoff_terminal" property="takeoffTerminal" jdbcType="VARCHAR" />
+    <result column="landing_terminal" property="landingTerminal" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, order_no, airline_company_code, departure_city_code, arrival_city_code, 
+    departure_airport_code, arrival_airport_code, stop_airport_code, flight_no, luggage_num, 
+    luggage_weight, departure_date, departure_time, arrival_time, construction_fee, fuel_fee, 
+    plane_type, stay_days, create_time, update_time, voyage_no, takeoff_terminal, landing_terminal
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.spring.study.model.FlightInfoModelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from tb_flight_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_flight_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_flight_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.spring.study.model.FlightInfoModelExample" >
+    delete from tb_flight_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.spring.study.model.FlightInfoModel" >
+    insert into tb_flight_info (id, order_id, order_no, 
+      airline_company_code, departure_city_code, 
+      arrival_city_code, departure_airport_code, 
+      arrival_airport_code, stop_airport_code, flight_no, 
+      luggage_num, luggage_weight, departure_date, 
+      departure_time, arrival_time, construction_fee, 
+      fuel_fee, plane_type, stay_days, 
+      create_time, update_time, voyage_no, 
+      takeoff_terminal, landing_terminal)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{airlineCompanyCode,jdbcType=VARCHAR}, #{departureCityCode,jdbcType=VARCHAR}, 
+      #{arrivalCityCode,jdbcType=VARCHAR}, #{departureAirportCode,jdbcType=VARCHAR}, 
+      #{arrivalAirportCode,jdbcType=VARCHAR}, #{stopAirportCode,jdbcType=VARCHAR}, #{flightNo,jdbcType=VARCHAR}, 
+      #{luggageNum,jdbcType=TINYINT}, #{luggageWeight,jdbcType=DECIMAL}, #{departureDate,jdbcType=DATE}, 
+      #{departureTime,jdbcType=TIME}, #{arrivalTime,jdbcType=TIME}, #{constructionFee,jdbcType=SMALLINT}, 
+      #{fuelFee,jdbcType=SMALLINT}, #{planeType,jdbcType=VARCHAR}, #{stayDays,jdbcType=SMALLINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{voyageNo,jdbcType=TINYINT}, 
+      #{takeoffTerminal,jdbcType=VARCHAR}, #{landingTerminal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.spring.study.model.FlightInfoModel" >
+    insert into tb_flight_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="airlineCompanyCode != null" >
+        airline_company_code,
+      </if>
+      <if test="departureCityCode != null" >
+        departure_city_code,
+      </if>
+      <if test="arrivalCityCode != null" >
+        arrival_city_code,
+      </if>
+      <if test="departureAirportCode != null" >
+        departure_airport_code,
+      </if>
+      <if test="arrivalAirportCode != null" >
+        arrival_airport_code,
+      </if>
+      <if test="stopAirportCode != null" >
+        stop_airport_code,
+      </if>
+      <if test="flightNo != null" >
+        flight_no,
+      </if>
+      <if test="luggageNum != null" >
+        luggage_num,
+      </if>
+      <if test="luggageWeight != null" >
+        luggage_weight,
+      </if>
+      <if test="departureDate != null" >
+        departure_date,
+      </if>
+      <if test="departureTime != null" >
+        departure_time,
+      </if>
+      <if test="arrivalTime != null" >
+        arrival_time,
+      </if>
+      <if test="constructionFee != null" >
+        construction_fee,
+      </if>
+      <if test="fuelFee != null" >
+        fuel_fee,
+      </if>
+      <if test="planeType != null" >
+        plane_type,
+      </if>
+      <if test="stayDays != null" >
+        stay_days,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="voyageNo != null" >
+        voyage_no,
+      </if>
+      <if test="takeoffTerminal != null" >
+        takeoff_terminal,
+      </if>
+      <if test="landingTerminal != null" >
+        landing_terminal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="airlineCompanyCode != null" >
+        #{airlineCompanyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="departureCityCode != null" >
+        #{departureCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalCityCode != null" >
+        #{arrivalCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAirportCode != null" >
+        #{departureAirportCode,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalAirportCode != null" >
+        #{arrivalAirportCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stopAirportCode != null" >
+        #{stopAirportCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flightNo != null" >
+        #{flightNo,jdbcType=VARCHAR},
+      </if>
+      <if test="luggageNum != null" >
+        #{luggageNum,jdbcType=TINYINT},
+      </if>
+      <if test="luggageWeight != null" >
+        #{luggageWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="departureDate != null" >
+        #{departureDate,jdbcType=DATE},
+      </if>
+      <if test="departureTime != null" >
+        #{departureTime,jdbcType=TIME},
+      </if>
+      <if test="arrivalTime != null" >
+        #{arrivalTime,jdbcType=TIME},
+      </if>
+      <if test="constructionFee != null" >
+        #{constructionFee,jdbcType=SMALLINT},
+      </if>
+      <if test="fuelFee != null" >
+        #{fuelFee,jdbcType=SMALLINT},
+      </if>
+      <if test="planeType != null" >
+        #{planeType,jdbcType=VARCHAR},
+      </if>
+      <if test="stayDays != null" >
+        #{stayDays,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voyageNo != null" >
+        #{voyageNo,jdbcType=TINYINT},
+      </if>
+      <if test="takeoffTerminal != null" >
+        #{takeoffTerminal,jdbcType=VARCHAR},
+      </if>
+      <if test="landingTerminal != null" >
+        #{landingTerminal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.spring.study.model.FlightInfoModelExample" resultType="java.lang.Integer" >
+    select count(*) from tb_flight_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_flight_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.airlineCompanyCode != null" >
+        airline_company_code = #{record.airlineCompanyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departureCityCode != null" >
+        departure_city_code = #{record.departureCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrivalCityCode != null" >
+        arrival_city_code = #{record.arrivalCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departureAirportCode != null" >
+        departure_airport_code = #{record.departureAirportCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrivalAirportCode != null" >
+        arrival_airport_code = #{record.arrivalAirportCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stopAirportCode != null" >
+        stop_airport_code = #{record.stopAirportCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flightNo != null" >
+        flight_no = #{record.flightNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.luggageNum != null" >
+        luggage_num = #{record.luggageNum,jdbcType=TINYINT},
+      </if>
+      <if test="record.luggageWeight != null" >
+        luggage_weight = #{record.luggageWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.departureDate != null" >
+        departure_date = #{record.departureDate,jdbcType=DATE},
+      </if>
+      <if test="record.departureTime != null" >
+        departure_time = #{record.departureTime,jdbcType=TIME},
+      </if>
+      <if test="record.arrivalTime != null" >
+        arrival_time = #{record.arrivalTime,jdbcType=TIME},
+      </if>
+      <if test="record.constructionFee != null" >
+        construction_fee = #{record.constructionFee,jdbcType=SMALLINT},
+      </if>
+      <if test="record.fuelFee != null" >
+        fuel_fee = #{record.fuelFee,jdbcType=SMALLINT},
+      </if>
+      <if test="record.planeType != null" >
+        plane_type = #{record.planeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stayDays != null" >
+        stay_days = #{record.stayDays,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.voyageNo != null" >
+        voyage_no = #{record.voyageNo,jdbcType=TINYINT},
+      </if>
+      <if test="record.takeoffTerminal != null" >
+        takeoff_terminal = #{record.takeoffTerminal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.landingTerminal != null" >
+        landing_terminal = #{record.landingTerminal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_flight_info
+    set id = #{record.id,jdbcType=BIGINT},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      airline_company_code = #{record.airlineCompanyCode,jdbcType=VARCHAR},
+      departure_city_code = #{record.departureCityCode,jdbcType=VARCHAR},
+      arrival_city_code = #{record.arrivalCityCode,jdbcType=VARCHAR},
+      departure_airport_code = #{record.departureAirportCode,jdbcType=VARCHAR},
+      arrival_airport_code = #{record.arrivalAirportCode,jdbcType=VARCHAR},
+      stop_airport_code = #{record.stopAirportCode,jdbcType=VARCHAR},
+      flight_no = #{record.flightNo,jdbcType=VARCHAR},
+      luggage_num = #{record.luggageNum,jdbcType=TINYINT},
+      luggage_weight = #{record.luggageWeight,jdbcType=DECIMAL},
+      departure_date = #{record.departureDate,jdbcType=DATE},
+      departure_time = #{record.departureTime,jdbcType=TIME},
+      arrival_time = #{record.arrivalTime,jdbcType=TIME},
+      construction_fee = #{record.constructionFee,jdbcType=SMALLINT},
+      fuel_fee = #{record.fuelFee,jdbcType=SMALLINT},
+      plane_type = #{record.planeType,jdbcType=VARCHAR},
+      stay_days = #{record.stayDays,jdbcType=SMALLINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      voyage_no = #{record.voyageNo,jdbcType=TINYINT},
+      takeoff_terminal = #{record.takeoffTerminal,jdbcType=VARCHAR},
+      landing_terminal = #{record.landingTerminal,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.spring.study.model.FlightInfoModel" >
+    update tb_flight_info
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="airlineCompanyCode != null" >
+        airline_company_code = #{airlineCompanyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="departureCityCode != null" >
+        departure_city_code = #{departureCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalCityCode != null" >
+        arrival_city_code = #{arrivalCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAirportCode != null" >
+        departure_airport_code = #{departureAirportCode,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalAirportCode != null" >
+        arrival_airport_code = #{arrivalAirportCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stopAirportCode != null" >
+        stop_airport_code = #{stopAirportCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flightNo != null" >
+        flight_no = #{flightNo,jdbcType=VARCHAR},
+      </if>
+      <if test="luggageNum != null" >
+        luggage_num = #{luggageNum,jdbcType=TINYINT},
+      </if>
+      <if test="luggageWeight != null" >
+        luggage_weight = #{luggageWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="departureDate != null" >
+        departure_date = #{departureDate,jdbcType=DATE},
+      </if>
+      <if test="departureTime != null" >
+        departure_time = #{departureTime,jdbcType=TIME},
+      </if>
+      <if test="arrivalTime != null" >
+        arrival_time = #{arrivalTime,jdbcType=TIME},
+      </if>
+      <if test="constructionFee != null" >
+        construction_fee = #{constructionFee,jdbcType=SMALLINT},
+      </if>
+      <if test="fuelFee != null" >
+        fuel_fee = #{fuelFee,jdbcType=SMALLINT},
+      </if>
+      <if test="planeType != null" >
+        plane_type = #{planeType,jdbcType=VARCHAR},
+      </if>
+      <if test="stayDays != null" >
+        stay_days = #{stayDays,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voyageNo != null" >
+        voyage_no = #{voyageNo,jdbcType=TINYINT},
+      </if>
+      <if test="takeoffTerminal != null" >
+        takeoff_terminal = #{takeoffTerminal,jdbcType=VARCHAR},
+      </if>
+      <if test="landingTerminal != null" >
+        landing_terminal = #{landingTerminal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.spring.study.model.FlightInfoModel" >
+    update tb_flight_info
+    set order_id = #{orderId,jdbcType=BIGINT},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      airline_company_code = #{airlineCompanyCode,jdbcType=VARCHAR},
+      departure_city_code = #{departureCityCode,jdbcType=VARCHAR},
+      arrival_city_code = #{arrivalCityCode,jdbcType=VARCHAR},
+      departure_airport_code = #{departureAirportCode,jdbcType=VARCHAR},
+      arrival_airport_code = #{arrivalAirportCode,jdbcType=VARCHAR},
+      stop_airport_code = #{stopAirportCode,jdbcType=VARCHAR},
+      flight_no = #{flightNo,jdbcType=VARCHAR},
+      luggage_num = #{luggageNum,jdbcType=TINYINT},
+      luggage_weight = #{luggageWeight,jdbcType=DECIMAL},
+      departure_date = #{departureDate,jdbcType=DATE},
+      departure_time = #{departureTime,jdbcType=TIME},
+      arrival_time = #{arrivalTime,jdbcType=TIME},
+      construction_fee = #{constructionFee,jdbcType=SMALLINT},
+      fuel_fee = #{fuelFee,jdbcType=SMALLINT},
+      plane_type = #{planeType,jdbcType=VARCHAR},
+      stay_days = #{stayDays,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      voyage_no = #{voyageNo,jdbcType=TINYINT},
+      takeoff_terminal = #{takeoffTerminal,jdbcType=VARCHAR},
+      landing_terminal = #{landingTerminal,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

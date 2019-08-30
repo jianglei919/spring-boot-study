@@ -51,4 +51,11 @@ public class UtilsTest {
     public void test6() {
         System.out.println(ArrayUtils.toObject(new int[]{1,2,3}));
     }
+
+    @Test
+    public void test7() {
+        System.out.println(RandomStringUtils.random(1));
+        System.out.println(RandomStringUtils.randomAlphanumeric(4));
+        System.out.println(RandomStringUtils.randomNumeric(5));
+    }
 }

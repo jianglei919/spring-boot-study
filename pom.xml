@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example.spring</groupId>
 	<artifactId>spring-boot-study</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>spring-boot-study</name>
 	<description>Spring Boot Study</description>
@@ -101,7 +101,52 @@
 			<version>3.14</version>
 		</dependency>
 
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.38</version>
+		</dependency>
+
+		<!-- Swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.1</version>
+		</dependency>
+
+
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<env-dir>environments/dev</env-dir>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<env-dir>environments/prod</env-dir>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>
@@ -134,22 +179,39 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!--mybatis-generator-->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>5.1.38</version>
+					</dependency>
+
+					<dependency>
+						<groupId>com.example.spring.boot.common</groupId>
+						<artifactId>spring-boot-api</artifactId>
+						<version>1.0.0-SNAPSHOT</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
 		</plugins>
 
 		<resources>
 			<resource>
-				<!--加载资源目录-->
+				<directory>src/main/resources/${env-dir}</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
 				<directory>src/main/resources</directory>
-				<includes>
-					<!--加载配置文件-->
-					<include>**/*.xml</include>
-					<include>**/*.properties</include>
-					<!--加载模板文件-->
-					<include>**/*.html</include>
-					<!--加载静态文件-->
-					<include>/static/</include>
-				</includes>
-
+				<excludes>
+					<exclude>environments/**</exclude>
+				</excludes>
 			</resource>
 		</resources>
 
