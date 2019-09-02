@@ -20,8 +20,20 @@ public class User {
     @ApiModelProperty(value = "用户姓名")
     private String name;
 
+    @ApiModelProperty(value = "性别")
+    private String sex;
+
     @ApiModelProperty(value = "用户年龄")
     private Integer age;
+
+    public User() {
+    }
+
+    public User(String name, String sex, Integer age) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+    }
 
     public Long getId() {
         return id;
@@ -37,6 +49,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public Integer getAge() {
