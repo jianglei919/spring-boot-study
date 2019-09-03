@@ -3,7 +3,8 @@ package com.example.spring.study.web.controller;
 import com.example.spring.study.common.DateConstant;
 import com.example.spring.study.util.DateUtil;
 import com.example.spring.study.web.vo.request.ProductInfoParam;
-import com.example.spring.study.web.vo.response.ApiResult;
+import com.example.spring.study.util.ApiResult;
+import com.example.spring.study.web.vo.response.BaseSearchResult;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -30,7 +31,9 @@ public class GetTestController {
     public ApiResult test1(@RequestParam(value = "id") Long id,
                            @RequestParam(value = "status", required = false) Integer status) {
         System.out.println(id + " " + status);
-        return ApiResult.success();
+        BaseSearchResult result = new BaseSearchResult();
+        result.setOrderNo("123456");
+        return ApiResult.success(result);
     }
 
     @RequestMapping(value = "/test2", method = RequestMethod.GET)
@@ -38,8 +41,6 @@ public class GetTestController {
     public ApiResult test2(@Valid ProductInfoParam param) {
         //build创建方式
         ProductInfoParam buildParam = ProductInfoParam.builder().productNo("111222").build();
-        log.info(param.toString());
-        log.info("param:{}", buildParam);
         return ApiResult.success(param);
     }
 

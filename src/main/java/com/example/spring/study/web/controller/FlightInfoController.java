@@ -1,7 +1,7 @@
 package com.example.spring.study.web.controller;
 
 import com.example.spring.study.service.FlightService;
-import com.example.spring.study.web.vo.response.ApiResult;
+import com.example.spring.study.util.ApiResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

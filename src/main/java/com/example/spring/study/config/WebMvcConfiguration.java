@@ -14,7 +14,22 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(flowLimitControlInterceptor());
+        registry.addInterceptor(flowLimitControlInterceptor())
+                .addPathPatterns("/deferred")
+                .excludePathPatterns("/swagger-ui.html",
+                "/swagger-resources/**",
+                "/webjars/**",
+                "/v2/**",
+                "/error",
+                "/async/**",
+                "/flight/**",
+                "/get/**",
+                "/post/*",
+                "/template/**",
+                "/users/**",
+                "/view/**",
+                "/hello"
+        );
     }
 
     @Bean

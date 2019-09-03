@@ -14,7 +14,6 @@ import org.springframework.web.context.request.async.DeferredResult;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -40,10 +39,7 @@ public class DeferredResultController {
     private ApplicationContext applicationContext;
 
     @RequestMapping("/deferred")
-    @ResponseBody
     public DeferredResult<String> deferred(HttpServletRequest request) {
-        Random random = new Random();
-        int r = random.nextInt(9);
         long start = System.currentTimeMillis();
         logger.info("当前请求主线程名：{}", Thread.currentThread().getName());
         DeferredResult<String> deferredResult = new DeferredResult<>(10000L);//5s

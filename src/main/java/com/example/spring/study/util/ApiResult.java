@@ -1,4 +1,4 @@
-package com.example.spring.study.web.vo.response;
+package com.example.spring.study.util;
 
 
 import com.example.spring.study.enums.CodeEnum;
@@ -93,4 +93,29 @@ public class ApiResult<T> implements Serializable {
         result.setMessage(CodeEnum.SUCCESS.msg);
         return result;
     }
+
+    public static ApiResult failed() {
+        ApiResult result = new ApiResult();
+        result.setData(null);
+        result.setStatus(CodeEnum.FAILED.code);
+        result.setMessage(CodeEnum.FAILED.msg);
+        return result;
+    }
+
+    public static <T> ApiResult<T> failed(T data) {
+        ApiResult<T> result = new ApiResult<T>();
+        result.setData(data);
+        result.setStatus(CodeEnum.FAILED.code);
+        result.setMessage(CodeEnum.FAILED.msg);
+        return result;
+    }
+
+    public static ApiResult failed(CodeEnum codeEnum) {
+        ApiResult result = new ApiResult();
+        result.setData(null);
+        result.setStatus(codeEnum.code);
+        result.setMessage(codeEnum.msg);
+        return result;
+    }
+
 }

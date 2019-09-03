@@ -3,7 +3,7 @@ package com.example.spring.study.web.controller;
 import com.example.spring.study.util.JacksonUtil;
 import com.example.spring.study.web.vo.request.BaseParam;
 import com.example.spring.study.web.vo.request.ProductInfoParam;
-import com.example.spring.study.web.vo.response.ApiResult;
+import com.example.spring.study.util.ApiResult;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;

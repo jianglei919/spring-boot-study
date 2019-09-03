@@ -14,6 +14,6 @@ public class HelloController {
     @ApiIgnore
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String index() {
-        return "Hello World";
+        return "Hello World啊";
     }
 }

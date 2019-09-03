@@ -19,8 +19,8 @@
 
 		<!-- 数据库链接URL、用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://:3306/f_fin_srm" userId=""
-			password="">
+			connectionURL="jdbc:mysql://10.93.20.26:3306/f_fin_srm" userId="betamagic"
+			password="53gusubyqkyigvMS">
 		</jdbcConnection>
 
 		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
