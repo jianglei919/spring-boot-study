@@ -4,6 +4,8 @@ public interface DateConstant {
 
     public static final String PATTERN_FULL_DATE_TIME = "yyyy-MM-dd HH:mm:ss";
 
+    public static final String PATTERN_FULL_DATE_TIME_SSS = "yyyy-MM-dd HH:mm:ss.SSS";
+
     public static final String PATTERN_FULL_DATE_TIME_SLASH = "yyyy/MM/dd HH:mm:ss";
 
     public static final String PATTERN_SIMPLE_DATE_TIME = "yyyy-MM-dd";
