@@ -25,7 +25,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                 "/flight/**",
                 "/get/**",
                 "/post/*",
-                "/template/**",
+                "/chaintemplate/**",
                 "/users/**",
                 "/view/**",
                 "/hello"
