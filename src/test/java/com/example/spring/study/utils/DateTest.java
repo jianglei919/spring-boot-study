@@ -10,6 +10,8 @@ import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Test;
 
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -109,5 +111,34 @@ public class DateTest {
         String d2 =  FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss").format(dateTimeScope.getEndTime());
 
         System.out.println(d2);
+    }
+
+    @Test
+    public void test7() throws ParseException {
+        System.out.println(FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss").parse("2019-11-27 12:11:26"));
+        System.out.println(FastDateFormat.getInstance("yyyy-MM-dd HH:mm").parse("2019-11-27 12:11:26"));
+        System.out.println(FastDateFormat.getInstance("yyyy-MM-dd").parse("2019-11-27 12:11:26"));
+    }
+
+    /**
+     * LocalDate转Date
+     */
+    @Test
+    public void test8() {
+        LocalDate localDate = LocalDate.now().minusDays(1);
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        System.out.println(localDate);
+        System.out.println(date);
+    }
+
+    /**
+     * Date转LocalDate
+     */
+    @Test
+    public void test9() {
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        System.out.println(date);
+        System.out.println(localDate);
     }
 }

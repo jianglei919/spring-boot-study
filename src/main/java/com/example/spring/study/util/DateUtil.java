@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -65,10 +68,14 @@ public class DateUtil {
      */
     private static Map<String, String> dateRegFormat = new HashMap<String, String>();
 
-    /** 锁对象 */
+    /**
+     * 锁对象
+     */
     private static final Object lockObj = new Object();
 
-    /** 存放不同的日期模板格式的sdf的Map */
+    /**
+     * 存放不同的日期模板格式的sdf的Map
+     */
     private static Map<String, ThreadLocal<SimpleDateFormat>> sdfMap = new HashMap<String, ThreadLocal<SimpleDateFormat>>();
 
     static {
@@ -102,6 +109,7 @@ public class DateUtil {
      * ron
      * 解决SimpleDateFormat静态化的坑
      * 返回一个ThreadLocal的sdf,每个线程只会new一次sdf
+     *
      * @param pattern
      * @return
      */
@@ -168,7 +176,8 @@ public class DateUtil {
 
     /**
      * 日期格式化
-     * @param date  日期格式字符串
+     *
+     * @param date   日期格式字符串
      * @param format 日期格式
      * @return
      */
@@ -180,17 +189,20 @@ public class DateUtil {
         }
         return null;
     }
+
     /**
      * 日期格式化
-     * @date 2017年5月10日 下午2:46:44
-     * @param date 日期
+     *
+     * @param date   日期
      * @param format 日期格式
      * @return
+     * @date 2017年5月10日 下午2:46:44
      */
     public static Date formatDate(Date date, String format) {
         String sdate = getDateFormat(date, format);
         return formatDate(sdate, format);
     }
+
     /**
      * 日期格式化yyyy-MM-dd
      *
@@ -198,7 +210,7 @@ public class DateUtil {
      * @return
      */
     public static String getDateFormat(Date date) {
-        if(date == null) {
+        if (date == null) {
             return null;
         }
         return dateFormat.format(date);
@@ -211,7 +223,7 @@ public class DateUtil {
      * @return
      */
     public static String getDateTimeFormat(Date date) {
-        if(date == null) {
+        if (date == null) {
             return null;
         }
         return dateTimeFormat.format(date);
@@ -224,7 +236,7 @@ public class DateUtil {
      * @return HH:mm:ss
      */
     public static String getTimeFormat(Date date) {
-        if(date == null) {
+        if (date == null) {
             return null;
         }
         return timeFormat.format(date);
@@ -290,7 +302,7 @@ public class DateUtil {
      * @return yyyy-MM-dd HH:mm:ss.SSS
      */
     public static String getDateTimeMillisFormat(long time) {
-        return getDateTimeMillisFormat(new Date(time)) ;
+        return getDateTimeMillisFormat(new Date(time));
     }
 
     /**
@@ -394,11 +406,12 @@ public class DateUtil {
         gregorianCalendar.set(Calendar.DAY_OF_MONTH, 1);
         return gregorianCalendar.getTime();
     }
+
     /**
      * Java将Unix时间戳转换成指定格式日期字符串
-     * @param timestampStr 时间戳 如："1473048265";
-     * @param formats 要格式化的格式 默认："yyyy-MM-dd HH:mm:ss";
      *
+     * @param timestampStr 时间戳 如："1473048265";
+     * @param formats      要格式化的格式 默认："yyyy-MM-dd HH:mm:ss";
      * @return 返回结果 如："2016-09-05 16:06:42";
      */
     public static String timeStamp2Date(String timestampStr, String formats) {
@@ -409,6 +422,7 @@ public class DateUtil {
         String date = new SimpleDateFormat(formats, Locale.CHINA).format(new Date(timestamp));
         return date;
     }
+
     /**
      * 获取指定月的最后一天
      *
@@ -481,6 +495,7 @@ public class DateUtil {
 
     /**
      * 现在是本周中第几天
+     *
      * @return
      */
     public static int getNowDayOfWeek() {
@@ -490,6 +505,7 @@ public class DateUtil {
 
     /**
      * 现在是本月中第几天
+     *
      * @return
      */
     public static int getNowDayOfMonth() {
@@ -499,6 +515,7 @@ public class DateUtil {
 
     /**
      * 现在是一年中第几天
+     *
      * @return
      */
     public static int getNowDayOfYear() {
@@ -508,14 +525,17 @@ public class DateUtil {
 
     /**
      * 现在是一天中第几小时
+     *
      * @return
      */
     public static int getNowHourOfDay() {
         Calendar d = Calendar.getInstance();
         return d.get(Calendar.HOUR_OF_DAY);
     }
+
     /**
      * 现在是一年中第几小时
+     *
      * @return
      */
     public static int getNowHourOfYear() {
@@ -572,7 +592,7 @@ public class DateUtil {
      * 获取时间段的每一天
      *
      * @param startDate 开始日期
-     * @param endDate 结算日期
+     * @param endDate   结算日期
      * @return 日期列表
      */
     public static List<Date> getEveryDay(Date startDate, Date endDate) {
@@ -606,13 +626,13 @@ public class DateUtil {
     }
 
     /**
-     *
      * TODO 比较日期大小
+     *
      * @param sdate1
      * @param sdate2
      * @return sdate1大于sdate2, 返回 1; </br>
-     *      sdate1等于sdate2, 返回 0; </br>
-     *      sdate1小于sdate2, 返回 -1; </br>
+     * sdate1等于sdate2, 返回 0; </br>
+     * sdate1小于sdate2, 返回 -1; </br>
      */
     public static int compareDate(String sdate1, String sdate2) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -631,14 +651,15 @@ public class DateUtil {
         }
         return 0;
     }
+
     /**
-     *
      * TODO 比较日期大小
+     *
      * @param date1
      * @param sdate
      * @return date1大于sdate, 返回 1; </br>
-     *      date1等于sdate, 返回 0; </br>
-     *      date1小于sdate, 返回 -1; </br>
+     * date1等于sdate, 返回 0; </br>
+     * date1小于sdate, 返回 -1; </br>
      */
     public static int compareDate(Date date1, String sdate) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -656,14 +677,15 @@ public class DateUtil {
         }
         return 0;
     }
+
     /**
-     *
      * TODO 比较日期大小
+     *
      * @param date1
      * @param date2
      * @return date1大于date2, 返回 1; </br>
-     *      date1等于date2, 返回 0; </br>
-     *      date1小于date2, 返回 -1; </br>
+     * date1等于date2, 返回 0; </br>
+     * date1小于date2, 返回 -1; </br>
      */
     public static int compareDate(Date date1, Date date2) {
         try {
@@ -681,8 +703,8 @@ public class DateUtil {
     }
 
     /**
-     *
      * TODO 返回日期之间相差的天数
+     *
      * @param smdate
      * @param bdate
      * @return
@@ -738,12 +760,12 @@ public class DateUtil {
      * @return
      */
     public static final <T extends Date> String format(T date, String pattern) {
-        if(date==null) return null;
-        try{
-            SimpleDateFormat df = new SimpleDateFormat(pattern,java.util.Locale.CHINA);
+        if (date == null) return null;
+        try {
+            SimpleDateFormat df = new SimpleDateFormat(pattern, java.util.Locale.CHINA);
             String result = df.format(date);
             return result;
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -761,15 +783,16 @@ public class DateUtil {
 
 
     public static Calendar getTime() {
-        Calendar time=Calendar.getInstance();
+        Calendar time = Calendar.getInstance();
         return time;
     }
 
     public static Calendar getTime(long timeMillis) {
-        Calendar time=getTime();
+        Calendar time = getTime();
         time.setTimeInMillis(timeMillis);
         return time;
     }
+
     public static Date getDate() {
         return getTime().getTime();
     }
@@ -781,24 +804,31 @@ public class DateUtil {
     public static String getYYYYMMDD() {
         return getSimpleDateFormat("yyyyMMdd").format(getDate());
     }
+
     public static String getYYYYMMDD(long time) {
         return getSimpleDateFormat("yyyyMMdd").format(getDate(time));
     }
+
     public static String getHHmmss() {
         return getSimpleDateFormat("HHmmss").format(getDate());
     }
+
     public static String getYYYYMM() {
         return getSimpleDateFormat("yyyyMM").format(getDate());
     }
+
     public static String getYYYYMM(long timeMillis) {
         return getSimpleDateFormat("yyyyMM").format(getDate(timeMillis));
     }
+
     public static String getMMDD() {
         return getSimpleDateFormat("MMdd").format(getTime());
     }
+
     public static String getMMDD(long timeMillis) {
         return getSimpleDateFormat("MMdd").format(getDate(timeMillis));
     }
+
     public static String getDD(long timeMillis) {
         return getSimpleDateFormat("dd").format(getDate(timeMillis));
     }
@@ -806,14 +836,12 @@ public class DateUtil {
     /**
      * 日期格式化(String转换为Date)
      *
-     * @param dateStr
-     *            日期字符串
-     * @param patten
-     *            处理结果日期的显示格式，如："YYYY-MM-DD"
+     * @param dateStr 日期字符串
+     * @param patten  处理结果日期的显示格式，如："YYYY-MM-DD"
      * @return
      */
     public static Date getDateToString(String dateStr, String patten) {
-        if(StringUtils.isEmpty(dateStr)){
+        if (StringUtils.isEmpty(dateStr)) {
             return null;
         }
         try {
@@ -826,6 +854,7 @@ public class DateUtil {
 
     /**
      * 转换日期
+     *
      * @param date
      * @return
      */
@@ -840,6 +869,7 @@ public class DateUtil {
 
     /**
      * 年份
+     *
      * @param date
      * @return
      */
@@ -1235,16 +1265,18 @@ public class DateUtil {
 
     /**
      * 获取给定时间所在月份的第一天
+     *
      * @param date
      * @return
      */
-    public static Date getSpecifyDateMonthFirstDay(Date date){
+    public static Date getSpecifyDateMonthFirstDay(Date date) {
         Calendar calendar = getCalendar(date);
         calendar.add(Calendar.MONTH, 0);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         return calendar.getTime();
     }
-    public static Date getSpecifyDateMonthLastDay(Date date){
+
+    public static Date getSpecifyDateMonthLastDay(Date date) {
         Calendar calendar = getCalendar(date);
         calendar.add(Calendar.MONTH, 1);
         calendar.set(Calendar.DAY_OF_MONTH, 0);
@@ -1271,4 +1303,19 @@ public class DateUtil {
         }
     }
 
+    /**
+     * 获取当前时间到凌晨剩余的秒数
+     *
+     * @param currentDate
+     * @return
+     */
+    public static int getRemainSecondsOneDay(Date currentDate) {
+        LocalDateTime midnight = LocalDateTime.ofInstant(currentDate.toInstant(),
+                ZoneId.systemDefault()).plusDays(1).withHour(0).withMinute(0)
+                .withSecond(0).withNano(0);
+        LocalDateTime currentDateTime = LocalDateTime.ofInstant(currentDate.toInstant(),
+                ZoneId.systemDefault());
+        long seconds = ChronoUnit.SECONDS.between(currentDateTime, midnight);
+        return (int) seconds;
+    }
 }
