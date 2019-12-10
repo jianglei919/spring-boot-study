@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,9 +21,17 @@ import javax.validation.Valid;
 @Slf4j
 public class PostTestController {
 
+    /**
+     * 总结一下 @Validated 和 @Valid 在嵌套验证功能上的区别：
+     * @Validated： 用在方法入参上无法单独提供嵌套验证功能。不能用在成员属性（字段）上，也无法提示框架进行嵌套验证。能配合嵌套验证注解@Valid进行嵌套验证。
+     * @Valid： 用在方法入参上无法单独提供嵌套验证功能。能够用在成员属性（字段）上，提示验证框架进行嵌套验证。能配合嵌套验证注解@Valid进行嵌套验证。
+     */
+
+
+
     @RequestMapping(value = "/test1", method = RequestMethod.POST)
     @ApiOperation(value="post测试1", notes="@RequestBody注解映射参数，@Valid校验参数")
-    public ApiResult post1(@RequestBody @Valid BaseParam baseParam) {
+    public ApiResult post1(@RequestBody @Validated BaseParam baseParam) {
 
         log.info(JacksonUtil.parseJson(baseParam));
         return ApiResult.success(baseParam);

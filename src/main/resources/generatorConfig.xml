@@ -19,8 +19,8 @@
 
 		<!-- 数据库链接URL、用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://:3306/f_fin_srm" userId=""
-			password="">
+			connectionURL="jdbc:mysql://localhost/test" userId="root"
+			password="123456">
 		</jdbcConnection>
 
 		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
@@ -52,7 +52,7 @@
 		</javaClientGenerator>
 
 		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
-		<table tableName="tb_flight_info" domainObjectName="FlightInfoModel"
+		<table tableName="case_info_field" domainObjectName="CaseInfoField"
 			enableCountByExample="true" enableUpdateByExample="true"
 			enableDeleteByExample="true" enableSelectByExample="true"
 			selectByExampleQueryId="true">
@@ -67,8 +67,13 @@
 			<!-- 自定义javaType -->
 			  <!--<columnOverride column="change_status" javaType="Integer" />-->
 			  <!--<columnOverride column="change_type" javaType="Integer" />-->
-			  <columnOverride column="departure_date" javaType="String" />
-			  <columnOverride column="create_time" javaType="String" />
+			  <!--<columnOverride column="go_date" javaType="String" />-->
+			  <!--<columnOverride column="departure_time" javaType="String" />-->
+			  <!--<columnOverride column="departure_time" javaType="String" />-->
+			  <!--<columnOverride column="refund_rate" javaType="Double" />-->
+			  <!--<columnOverride column="refund_fee" javaType="Double" />-->
+			  <!--<columnOverride column="refund_time_node" javaType="Double" />-->
+			  <!--<columnOverride column="print_price" javaType="Double" />-->
 			  <!--<columnOverride column="before_arr_date" javaType="String" />-->
 			  <!--<columnOverride column="before_arr_time" javaType="String" />-->
 			  <!--<columnOverride column="after_dep_date" javaType="String" />-->
