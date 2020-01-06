@@ -1,5 +1,6 @@
 package com.example.spring.study.config;
 
+import com.example.my.auto.configure.bean.MyDemoTemplate;
 import com.example.spring.study.task.executor.ScheduledExecutorTask;
 import com.example.spring.study.task.timer.TimerTaskDemo;
 import lombok.extern.slf4j.Slf4j;
@@ -37,11 +38,16 @@ public class WebConfiguration {
     @Bean
     public ApplicationRunner runner(WebServerApplicationContext context) {
         return args -> {
-            log.info("当前WebServer实现类为：{}", context.getWebServer().getClass().getName());
+//            log.info("当前WebServer实现类为：{}", context.getWebServer().getClass().getName());
 
 //            startTimerTask();
 //            startScheduledExecutorTask();
         };
+    }
+
+//    @Bean
+    public MyDemoTemplate myDemoTemplate() {
+        return new MyDemoTemplate("手动配置覆盖自动装配");
     }
 
     private void startTimerTask() {

@@ -5,13 +5,15 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Created by jianglei on 2019/8/30.
  */
 @ApiModel(description = "用户入参")
-public class User {
+public class User implements Serializable {
 
+    private static final long serialVersionUID = -6810331036136484406L;
     @NotNull(message = "用户id不能为空")
     @ApiModelProperty(value = "用户id", example = "1")
     @Min(value = 1,message = "金额最小等于1")
